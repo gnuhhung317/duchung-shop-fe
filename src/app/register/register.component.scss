@@ -39,11 +39,15 @@
 .password-field{
     position: relative;
 }
+.password-group{
+    position: relative;
+
+}
 .password-toggle{
     position: absolute;
     top: 50%;
     right: 10px;
-    transform: translateY(50%);
+    transform: translateY(-50%);
     color: rgb(105,244,181);
     cursor: pointer;
 }

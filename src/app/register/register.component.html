@@ -6,60 +6,143 @@
         <h2 class="register-header text-center">Đăng ký</h2>
 
         <div class="form-group">
-          <label for="email">Email/Phone</label>
-          <input type="text" class="form-control" id="email" />
+          <label for="phone">Phone</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phone"
+            [(ngModel)]="phone"
+            (focus)="setFocus('phone')"
+            required
+          />
           <div class="divider-nospace"></div>
+
+          <p
+            class="text-danger"
+            *ngIf="phone.length != 10 && getFocus('phone')"
+          >
+            Số điện thoại phải có 10 ký tự
+          </p>
         </div>
 
         <div class="mt-3"></div>
         <div class="form-group password-field">
           <label for="password">Mật khẩu</label>
-          <input
-            type="password"
-            placeholder="Ít nhất 3 ký tự"
-            class="form-control"
-            id="password"
-          />
-          <i class="password-toggle fas fa-eye-slash"></i>
+          <div class="password-group">
+            <input
+              type="password"
+              [(ngModel)]="password"
+              placeholder="Ít nhất 6 ký tự"
+              class="form-control"
+              id="password"
+              required
+              (focus)="setFocus('password')"
+            />
+            <i class="password-toggle fas fa-eye-slash"></i>
+          </div>
+
           <div class="divider-nospace"></div>
+
+          <p
+            class="text-danger"
+            *ngIf="password.length < 6 && getFocus('password')"
+          >
+            Mật khẩu phải ít nhất 6 ký tự
+          </p>
         </div>
         <div class="mt-3"></div>
 
         <div class="form-group password-field">
-          <label for="confirm-password">Gõ lại mật khẩu</label>
-          <input
-            type="password"
-            placeholder="Ít nhất 3 ký tự"
-            class="form-control"
-            id="confirm-password"
-          />
-          <i class="password-toggle fas fa-eye-slash"></i>
+          <label for="retype-password">Gõ lại mật khẩu</label>
+          <div class="password-group">
+            <input
+              type="password"
+              [(ngModel)]="retypePassword"
+              placeholder="Ít nhất 6 ký tự"
+              class="form-control"
+              id="retype-password"
+              required
+              (focus)="setFocus('retypePassword')"
+            />
+            <i class="password-toggle fas fa-eye-slash"></i>
+          </div>
+
           <div class="divider-nospace"></div>
+          <p
+            class="text-danger"
+            *ngIf="password != retypePassword && getFocus('retypePassword')"
+          >
+            Mật khẩu không khớp
+          </p>
         </div>
         <div class="mt-3"></div>
 
         <div class="form-group">
           <label for="full-name">Họ và tên</label>
-          <input type="text" class="form-control" id="full-name" />
+          <input
+            type="text"
+            [(ngModel)]="fullName"
+            class="form-control"
+            id="full-name"
+            required
+          />
           <div class="divider-nospace"></div>
         </div>
         <div class="mt-3"></div>
+
+        <div class="form-group">
+          <label for="date-of-birth">Ngày sinh</label>
+          <input
+            type="date"
+            [(ngModel)]="dateOfBirth"
+            class="form-control"
+            id="date-of-birth"
+            required
+            (focus)="setFocus('dateOfBirth')"
+          />
+          <div class="divider-nospace"></div>
+
+          <p
+            class="text-danger"
+            *ngIf="isNotValidBirth(dateOfBirth) && getFocus('dateOfBirth')"
+          >
+            Bạn chưa đủ 18 tuổi
+          </p>
+        </div>
+
+        <div class="mt-3"></div>
         <div class="form-group">
           <label for="address">Địa chỉ</label>
-          <input type="text" class="form-control" id="address" />
+          <input
+            type="text"
+            [(ngModel)]="address"
+            class="form-control"
+            id="address"
+            required
+          />
           <div class="divider-nospace"></div>
         </div>
         <div class="form-group">
           <div class="form-check checkbox-text">
             <span style="display: flex">
-              <input type="checkbox" class="form-check-input" id="agree" />
+              <input
+                type="checkbox"
+                [(ngModel)]="isAccepted"
+                class="form-check-input"
+                id="agree"
+              />
               <label class="form-check-label text-start" for="agree">
                 Tôi đồng ý với các điều khoản và điều kiện</label
               >
             </span>
           </div>
+          <p class="text-danger" *ngIf="!isAccepted && getFocus('register')">
+            Bạn chưa đồng ý với điều khoản!
+          </p>
         </div>
-        <button type="button" class="btn-gradient">Đăng ký</button>
+        <button type="button" class="btn-gradient" (click)="register()">
+          Đăng ký
+        </button>
         <div class="divider"></div>
         <p class="text-center">
           Bạn đã có tài khoản?
