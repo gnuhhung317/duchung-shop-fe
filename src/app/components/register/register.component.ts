@@ -3,8 +3,9 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { RegisterDto } from '../../dtos/user/register.dto';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,7 @@ export class RegisterComponent {
   dateOfBirth: Date;
 
   focusState: {[key:string ]:Boolean}={};
-  constructor(private http: HttpClient, private router: Router ) {
+  constructor( private router: Router, private userService:UserService)  {
     
     this.phone = "";
     this.password = "";
@@ -60,8 +61,7 @@ register() {
   if(this.isAccepted==false) {
     return;
   }
-  const apiUrl = "http://localhost:8080/api/v1/users/register";
-  const payloads={
+  const registerDto:RegisterDto={
     "phoneNumber":this.phone,
     "password":this.password,
     "retypePassword":this.retypePassword,
@@ -73,8 +73,7 @@ register() {
     "roleId":1
 
   }
-  const header = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-  this.http.post(apiUrl, payloads, {headers: header}).subscribe({
+  this.userService.register(registerDto).subscribe({
     next: (response:any) => {
         if(response.status.id!=null) {
         this.router.navigate(['/login']);
