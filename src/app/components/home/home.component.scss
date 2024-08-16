@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
   }
   .product-category {
     width: 200px;
@@ -19,15 +20,36 @@
     border-color: rgba(255, 255, 255, 0.5);
     color: white;
   }
+  .search-btn{
+    background-color: rgb(127,68,255);
+    color: white;
+    margin-left: 20px;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .search-btn:hover{
+    background-color: rgb(242, 68, 212);
+    transition: 0.5s;
+  }
   .form-control {
     background-color: transparent;
     color: white;
   }
+  .product-not-found{
+    text-align: center;
+  }
+  .pagination-nav{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
   .product-category option {
     background-color: rgb(19, 23, 42);
     color: white;
   }
-
+.btn-primary{
+  background-color: (127,68,255);
+}
   .form-control::placeholder {
     color: rgba(255, 255, 255, 0.5);
   }
@@ -39,11 +61,7 @@
     padding: 20px;
     margin-bottom: 20px;
   }
-  .product-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-  }
+
   .product-name {
     color: white;
   }
@@ -69,3 +87,26 @@
   .space-x {
     margin: 0 5px;
   }
+  .pagination .page-item .page-link {
+    color: #ededf0; /* Default text color */
+    background-color:  rgb(242, 68, 212); /* Default background color */
+    border-color:  rgb(127,68,255); /* Default border color */
+}
+
+.pagination .page-item.active .page-link {
+    color: #fff; /* Color of the text in the active page item */
+    background-color:  rgb(127,68,255); /* Background color of the active page item */
+    border-color:  rgb(127,68,255); /* Border color of the active page item */
+}
+
+.pagination .page-item:hover .page-link {
+    color:  rgb(127,68,255); /* Color on hover */
+    background-color:  rgb(242, 126, 212);; /* Background color on hover */
+    border-color:  rgb(242, 126, 212);; /* Border color on hover */
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d; /* Color of the disabled page item */
+    background-color: #fff; /* Background color of the disabled page item */
+    border-color: #dee2e6; /* Border color of the disabled page item */
+}

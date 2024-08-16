@@ -11,117 +11,71 @@
       type="text"
       placeholder="Tìm sản phẩm"
       class="form-control search-input"
+      [(ngModel)]="keyword"
     />
-    <select class="form-control product-category">
-      <option selected disabled>Danh mục sản phẩm</option>
-      <option>Đồ điện tử</option>
-      <option>Hải sản</option>
-      <option>Bánh kẹo</option>
+    <select
+      class="form-control product-category"
+      [(ngModel)]="categoryId"
+      (change)="onCategoryChange($event)"
+    >
+      <option value="-1" selected>Danh mục sản phẩm</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
     </select>
-  </div>
-  <div class="row">
-    <div class="col-lg-4 col-md-6">
-      <div class="product-item">
-        <img
-          src="https://media.wired.com/photos/64daad6b4a854832b16fd3bc/master/w_1920,c_limit/How-to-Choose-a-Laptop-August-2023-Gear.jpg"
-          alt="Product Image"
-          class="product-image"
-        />
-        <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Rất đẹp trai</p>
-        <p class="product-warranty">Bảo hành: trọn đời</p>
-        <p class="product-price">Giá: 100.000.000 VND</p>
-        <div class="product-rating">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-        <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
-          <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6">
-      <div class="product-item">
-        <img
-          src="https://media.wired.com/photos/64daad6b4a854832b16fd3bc/master/w_1920,c_limit/How-to-Choose-a-Laptop-August-2023-Gear.jpg"
-          alt="Product Image"
-          class="product-image"
-        />
-        <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Rất đẹp trai</p>
-        <p class="product-warranty">Bảo hành: trọn đời</p>
-        <p class="product-price">Giá: 100.000.000 VND</p>
-        <div class="product-rating">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-        <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
-          <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6">
-      <div class="product-item">
-        <img
-          src="https://media.wired.com/photos/64daad6b4a854832b16fd3bc/master/w_1920,c_limit/How-to-Choose-a-Laptop-August-2023-Gear.jpg"
-          alt="Product Image"
-          class="product-image"
-        />
-        <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Rất đẹp trai</p>
-        <p class="product-warranty">Bảo hành: trọn đời</p>
-        <p class="product-price">Giá: 100.000.000 VND</p>
-        <div class="product-rating">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-        <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
-          <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-lg-4 col-md-6">
-      <div class="product-item">
-        <img
-          src="https://media.wired.com/photos/64daad6b4a854832b16fd3bc/master/w_1920,c_limit/How-to-Choose-a-Laptop-August-2023-Gear.jpg"
-          alt="Product Image"
-          class="product-image"
-        />
-        <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Rất đẹp trai</p>
-        <p class="product-warranty">Bảo hành: trọn đời</p>
-        <p class="product-price">Giá: 100.000.000 VND</p>
-        <div class="product-rating">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-        <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
-          <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
-        </div>
-      </div>
+    <button
+      type="button"
+      class="btn btn-primary search-btn"
+      (click)="getProducts()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-search"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+        ></path>
+      </svg>
+      Tìm kiếm
+    </button>
+  </div>
+  <div *ngIf="products.length > 0" class="row">
+    <div *ngFor="let product of products" class="col-lg-4 col-md-6">
+      <app-product-item [product]="product"></app-product-item>
     </div>
   </div>
+
+  <!-- Template to display when there are no products -->
+  <div *ngIf="products.length == 0" class="text-center">
+    <p>No elements found</p>
+  </div>
+
+  <nav class="pagination-nav" aria-label="...">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="#" (click)="onPageChange(currentPage - 1)"
+          >Previous</a
+        >
+      </li>
+      <ng-container *ngFor="let page of visibalePages">
+        <li class="page-item" [ngClass]="{ active: page == currentPage }">
+          <a class="page-link" href="#" (click)="onPageChange(page)">{{
+            page
+          }}</a>
+        </li>
+      </ng-container>
+      <li class="page-item">
+        <a class="page-link" href="#" (click)="onPageChange(currentPage + 1)"
+          >Next</a
+        >
+      </li>
+    </ul>
+  </nav>
 </div>
 
 <app-footer></app-footer>

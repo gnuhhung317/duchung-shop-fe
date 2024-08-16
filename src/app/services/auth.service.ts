@@ -8,7 +8,7 @@ export class AuthService {
   constructor() { }
 
   getToken() : string | null {
-    return localStorage.getItem(this.TOKEN);
+    return window.localStorage.getItem(this.TOKEN);
   }
   setToken(token: string) {
     localStorage.setItem(this.TOKEN, token);

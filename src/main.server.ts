@@ -7,6 +7,6 @@ import { OrderConfirmComponent } from './app/components/order-confirm/order-conf
 import { LoginComponent } from './app/components/login/login.component';
 import { RegisterComponent } from './app/components/register/register.component';
 import { FormsModule } from '@angular/forms';
-const bootstrap = () => bootstrapApplication(LoginComponent, config);
+const bootstrap = () => bootstrapApplication(HomeComponent, config);
 
 export default bootstrap;
