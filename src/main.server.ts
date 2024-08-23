@@ -7,6 +7,9 @@ import { OrderConfirmComponent } from './app/components/order-confirm/order-conf
 import { LoginComponent } from './app/components/login/login.component';
 import { RegisterComponent } from './app/components/register/register.component';
 import { FormsModule } from '@angular/forms';
-const bootstrap = () => bootstrapApplication(HomeComponent, config);
+import 'localstorage-polyfill'
+
+global['localStorage'] = localStorage
+const bootstrap = () => bootstrapApplication(OrderConfirmComponent, config);
 
 export default bootstrap;
